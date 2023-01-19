@@ -1,1 +1,1 @@
-# mdp-manual-generator
+# manual-mdp-generator
