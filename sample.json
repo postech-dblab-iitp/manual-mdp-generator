@@ -1,0 +1,80 @@
+{
+    "Types": [
+      {
+        "Name": "int4",
+        "IsRedistributable": true,
+        "IsFixedLength": true,
+        "IsHashable": true
+      },
+      {
+        "Name": "int8",
+        "IsRedistributable": true,
+        "IsFixedLength": true,
+        "PassByValue": true,
+        "IsHashable": true
+      },      
+      {
+        "Name": "bpchar",
+        "IsRedistributable": true,
+        "IsFixedLength": false,
+        "PassByValue": false,
+        "IsHashable": true
+      },
+      {
+        "Name": "bool",
+        "IsRedistributable": true,
+        "IsFixedLength": false,
+        "PassByValue": true,
+        "IsHashable": true
+      }
+    ],
+    "Relations": [
+      {
+        "Name": "user",
+        "Columns": [
+          {
+            "Name": "id",
+            "Column_type": "int4",
+            "Nullable": false
+          },
+          {
+            "Name": "name",
+            "Column_type": "char",
+            "Nullable": false
+          }
+        ]
+      },
+      {
+        "Name": "knows",
+        "Columns": [
+          {
+            "Name": "userid_1",
+            "Column_type": "int4",
+            "Nullable": false
+          },
+          {
+            "Name": "userid_2",
+            "Column_type": "int4",
+            "Nullable": false
+          }
+        ]
+      }
+    ],
+    "Relation_statistics": [
+      {
+        "Relation": "user",
+        "Rows": 100000
+      }
+    ],
+    "Indicies": [
+      {
+        "Name": "index_user_id",
+        "Relation": "user",
+        "Is_clustered": true,
+        "Key_columns": [
+            "id"
+        ]
+      }
+    ]
+  }
+  
