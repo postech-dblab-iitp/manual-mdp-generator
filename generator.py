@@ -2,6 +2,12 @@ import xml.dom.minidom
 import json
 import sys
 
+def getMdidString(oid, mdid):
+    if type(mdid) is str:
+        return str(oid) + '.' + mdid + '.1.0'
+    else:
+        return str(oid) + '.' + str(mdid) + '.1.0'
+
 class Type:
     def __init__(self) -> None:
         self.name = ''
@@ -28,7 +34,7 @@ class Type:
 
     def setAttributes(self, name, mdid, isRedistributable, isFixedLength, passByValue, isHashable):
         self.name = name
-        self.mdid = mdid
+        self.mdid = getMdidString(0, mdid)
         self.isRedistributable = isRedistributable
         self.isFixedLength = isFixedLength
         self.passByValue = passByValue
@@ -36,32 +42,32 @@ class Type:
 
     def setChildMdids(self, mdid):
         sub_mdid = 0
-        self.equalityOp = str(mdid) + '.' + str(sub_mdid)
+        self.equalityOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.inequalityOp = str(mdid) + '.' + str(sub_mdid)
+        self.inequalityOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.lessThanOp = str(mdid) + '.' + str(sub_mdid)
+        self.lessThanOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.lessThanEqualsOp = str(mdid) + '.' + str(sub_mdid)
+        self.lessThanEqualsOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.greaterThanOp = str(mdid) + '.' + str(sub_mdid)
+        self.greaterThanOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.greaterThanEqualsOp = str(mdid) + '.' + str(sub_mdid)
+        self.greaterThanEqualsOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.comparisonOp = str(mdid) + '.' + str(sub_mdid)
+        self.comparisonOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.arrayType = str(mdid) + '.' + str(sub_mdid)
+        self.arrayType = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
         
-        self.minAgg = str(mdid) + '.' + str(sub_mdid)
+        self.minAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.maxAgg = str(mdid) + '.' + str(sub_mdid)
+        self.maxAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.avgAgg = str(mdid) + '.' + str(sub_mdid)
+        self.avgAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.sumAgg = str(mdid) + '.' + str(sub_mdid)
+        self.sumAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.countAgg = str(mdid) + '.' + str(sub_mdid)
+        self.countAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
 
     def serialize(self) -> str:
         # Print attributes
@@ -119,6 +125,9 @@ class GPDBScalaOp:
         self.commutator = commutator
         self.inverseOp = inverseOp
     
+    def getOid():
+        return str(0)
+    
     def serialize(self) -> str:
         # Print attributes
         serialized_string = '<dxl:GPDBScalarOp '
@@ -149,6 +158,9 @@ class GPDBAgg:
         self.resultType = ''
         self.intermediateResultType = ''
     
+    def getOid():
+        return str(0)    
+
     def serialize(self) -> str:
         # Print attributes
         serialized_string = '<dxl:GPDBAgg '
@@ -180,7 +192,7 @@ class Relation:
     
     def setAttributes(self, name, mdid, isTemporary):
         self.name = name
-        self.mdid = mdid
+        self.mdid = getMdidString(6, mdid)
         self.isTemporary = isTemporary
     
     def setColumns(self, columns_json):
@@ -191,7 +203,7 @@ class Relation:
             
             # Get attributes
             name = column_json['Name']
-            mdid = self.mdid + '.' + str(column_counter)
+            mdid = self.mdid.split('.')[1]
             attno = column_counter
             nullable = column_json['Nullable']
             
@@ -216,7 +228,7 @@ class Relation:
             column = Column()
             
             # Get attributes
-            mdid = self.mdid + '.' + str(column_counter)
+            mdid = self.mdid.split('.')[1]
             nullable = False
             
             # Set attributes
@@ -267,7 +279,7 @@ class Column:
     
     def setAttributes(self, name, mdid, attno, nullable):
         self.name = name
-        self.mdid = mdid
+        self.mdid = getMdidString(0, mdid)
         self.attno = attno
         self.nullable = nullable
     
@@ -299,12 +311,15 @@ class Index:
         
     def setAttributes(self, name, mdid, relationMdid, isClustered, keyColumns, includedColumns):
         self.name = name
-        self.mdid = mdid
+        self.mdid = getMdidString(7, mdid)
         self.relationMdid = relationMdid
         self.isClustered = isClustered
         self.keyColumns = keyColumns
         self.includedColumns = includedColumns
-    
+
+    def getOid():
+        return str(7)    
+
     def serialize(self) -> str:
         # Print attributes
         serialized_string = '<dxl:Index '
@@ -332,8 +347,11 @@ class RelationStatistics:
         
     def setAttributes(self, name, mdid, rows):
         self.name = name
-        self.mdid = mdid
+        self.mdid = getMdidString(2, mdid)
         self.rows = rows
+    
+    def getOid():
+        return str(1)    
         
     def serialize(self) -> str:
         # Print attributes
@@ -378,7 +396,7 @@ with open(json_file_path, 'r') as json_file:
         mdid_clock = mdid_clock + 1
         
         # Set attributes
-        new_type.setAttributes(name, str(mdid), isRedistributable, isFixedLength, passByValue, isHashable)
+        new_type.setAttributes(name, mdid, isRedistributable, isFixedLength, passByValue, isHashable)
         
         # Set child mdids
         new_type.setChildMdids(mdid)
@@ -388,7 +406,7 @@ with open(json_file_path, 'r') as json_file:
         
         # If boolean, store its mdid
         if name == 'bool':
-            bool_mdid = str(mdid)
+            bool_mdid = new_type.mdid
     
     # GPDBScalaOp and GPDBAgg instance generation and mdid assignment
     for type_instance in type_list:
@@ -513,7 +531,6 @@ with open(json_file_path, 'r') as json_file:
     # RelationStatistics instance generation and mdid assignment
     # Get relation statistics list
     relation_statistics_json_list = spec_json['Relation_statistics']
-    rs_mdid_clock = 0
     for relation_statistics_json in relation_statistics_json_list:
         # Create RS instance
         new_relation_statistics = RelationStatistics()
@@ -529,11 +546,11 @@ with open(json_file_path, 'r') as json_file:
                 relation_mdid = relation.mdid
                 
         # Generate mdid
-        mdid = str(rs_mdid_clock) + '.0.' + relation_mdid
-        rs_mdid_clock = rs_mdid_clock + 1
+        mdid = mdid_clock
+        mdid_clock = mdid_clock + 1
         
         # Set attributes
-        new_relation_statistics.setAttributes(name, mdid, rows)
+        new_relation_statistics.setAttributes(name, str(mdid), rows)
         
         # Append
         relation_statistics_list.append(new_relation_statistics)
