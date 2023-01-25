@@ -130,7 +130,7 @@ class GPDBScalaOp:
         self.leftType = leftType
         self.rightType = rightType
         self.resultType = resultType
-        self.opFunc = mdid + '.' + '0'
+        self.opFunc = mdid.split('.')[0] + '.' + mdid.split('.')[1] + '0' + '.1.0'
         self.commutator = commutator
         self.inverseOp = inverseOp
     
@@ -150,7 +150,7 @@ class GPDBScalaOp:
         # Print childs
         serialized_string += ('<dxl:LeftType Mdid=\"' + self.leftType + '\"/>')
         serialized_string += ('<dxl:RightType Mdid=\"' + self.rightType + '\"/>')
-        #serialized_string += ('<dxl:ResultType Mdid=\"' + self.resultType + '\"/>')
+        serialized_string += ('<dxl:ResultType Mdid=\"' + self.resultType + '\"/>')
         serialized_string += ('<dxl:OpFunc Mdid=\"' + self.opFunc + '\"/>')
         serialized_string += ('<dxl:Commutator Mdid=\"' + self.commutator + '\"/>')
         serialized_string += ('<dxl:InverseOp Mdid=\"' + self.inverseOp + '\"/>')
@@ -567,7 +567,7 @@ with open(json_file_path, 'r') as json_file:
         relation_statistics_list.append(new_relation_statistics)
         
 # Print
-mdp_string = '<?xml version="1.0" encoding="UTF-8"?>'
+mdp_string = '<?xml version="1.0" encoding="UTF-8" ?>'
 mdp_string += '<dxl:DXLMessage xmlns:dxl="http://greenplum.com/dxl/2010/12/">'
 mdp_string += '<dxl:Thread Id="0">'
 mdp_string += '<dxl:Metadata SystemIds="0.GPDB">'
