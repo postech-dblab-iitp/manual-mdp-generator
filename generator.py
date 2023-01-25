@@ -382,7 +382,7 @@ index_list = []
 relation_statistics_list = []
 
 json_file_path = sys.argv[1]
-mdid_clock = 0
+mdid_clock = 1
 bool_mdid = ''
 
 with open(json_file_path, 'r') as json_file:
