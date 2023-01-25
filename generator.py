@@ -256,7 +256,7 @@ class Relation:
         serialized_string = '<dxl:Relation '
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
         serialized_string += ('Name=\"' + self.name + '\" ')
-        serialized_string += ('IsTemporary=\"' + str(self.isTemporary) + '\" ')
+        serialized_string += ('IsTemporary=\"' + str(self.isTemporary).lower() + '\" ')
         serialized_string += ('StorageType=\"' + self.storageType + '\" ')
         serialized_string += ('DistributionPolicy=\"' + self.distributionPolicy + '\" ')
         serialized_string += '>'
@@ -300,7 +300,7 @@ class Column:
         serialized_string += ('Name=\"' + self.name + '\" ')
         serialized_string += ('Attno=\"' + str(self.attno) + '\" ')
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
-        serialized_string += ('Nullable=\"' + str(self.nullable) + '\" ')
+        serialized_string += ('Nullable=\"' + str(self.nullable).lower() + '\" ')
         serialized_string += '>'
         
         # Print childs
@@ -337,7 +337,7 @@ class Index:
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
         serialized_string += ('Name=\"' + self.name + '\" ')
         serialized_string += ('RelationMdid=\"' + self.relationMdid + '\" ')
-        serialized_string += ('IsClustered=\"' + str(self.isClustered) + '\" ')
+        serialized_string += ('IsClustered=\"' + str(self.isClustered).lower() + '\" ')
         serialized_string += ('KeyColumns=\"' + ','.join(self.keyColumns) + '\" ')
         serialized_string += ('IncludedColumns=\"' + ','.join(self.includedColumns) + '\" ')
         serialized_string += '>'
