@@ -114,6 +114,8 @@ class GPDBScalaOp:
         self.name = ''
         self.mdid = ''
         self.comparisionType = ''
+        self.returnsNullOnNullInput = True
+        self.isNDVPreserving = False
         
         self.leftType = ''
         self.rightType = ''
@@ -142,6 +144,8 @@ class GPDBScalaOp:
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
         serialized_string += ('Name=\"' + self.name + '\" ')
         serialized_string += ('ComparisonType=\"' + self.comparisionType + '\" ')
+        serialized_string += ('ReturnsNullOnNullInput=\"' + self.returnsNullOnNullInput + '\" ')
+        serialized_string += ('IsNDVPreserving=\"' + self.isNDVPreserving + '\" ')
         serialized_string += '>'
         
         # Print childs
