@@ -78,13 +78,13 @@ class Type:
         serialized_string = '<dxl:Type '
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
         serialized_string += ('Name=\"' + self.name + '\" ')
-        serialized_string += ('IsRedistributable=\"' + str(self.isRedistributable) + '\" ')
-        serialized_string += ('IsHashable=\"' + str(self.isHashable) + '\" ')
-        serialized_string += ('PassByValue=\"' + str(self.passByValue) + '\" ')
-        serialized_string += ('IsMergeJoinable=\"' + str(self.isMergeJoinable) + '\" ')
-        serialized_string += ('IsFixedLength=\"' + str(self.isFixedLength) + '\" ')
+        serialized_string += ('IsRedistributable=\"' + str(self.isRedistributable).lower() + '\" ')
+        serialized_string += ('IsHashable=\"' + str(self.isHashable).lower() + '\" ')
+        serialized_string += ('PassByValue=\"' + str(self.passByValue).lower() + '\" ')
+        serialized_string += ('IsMergeJoinable=\"' + str(self.isMergeJoinable).lower() + '\" ')
+        serialized_string += ('IsFixedLength=\"' + str(self.isFixedLength).lower() + '\" ')
         serialized_string += ('Length=\"' + str(self.length) + '\" ')
-        serialized_string += ('IsTextRelated=\"' + str(self.isTextRelated) + '\" ')
+        serialized_string += ('IsTextRelated=\"' + str(self.isTextRelated).lower() + '\" ')
         serialized_string += '>'
         
         # Print childs
@@ -143,8 +143,8 @@ class GPDBScalaOp:
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
         serialized_string += ('Name=\"' + self.name + '\" ')
         serialized_string += ('ComparisonType=\"' + self.comparisionType + '\" ')
-        serialized_string += ('ReturnsNullOnNullInput=\"' + str(self.returnsNullOnNullInput) + '\" ')
-        serialized_string += ('IsNDVPreserving=\"' + str(self.isNDVPreserving) + '\" ')
+        serialized_string += ('ReturnsNullOnNullInput=\"' + str(self.returnsNullOnNullInput).lower() + '\" ')
+        serialized_string += ('IsNDVPreserving=\"' + str(self.isNDVPreserving).lower() + '\" ')
         serialized_string += '>'
         
         # Print childs
