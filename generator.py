@@ -193,8 +193,8 @@ class Relation:
         self.name = ''
         self.mdid = ''
         self.isTemporary = False
-        self.storageType = 'AppendOnly, Column-oriented'
-        self.distributionPolicy = 'Hash'
+        self.storageType = 'Heap'
+        self.distributionPolicy = 'MasterOnly'
         
         self.columns = []
         self.indexInfoList = []
