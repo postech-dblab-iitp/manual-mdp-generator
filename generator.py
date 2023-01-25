@@ -343,7 +343,6 @@ class Index:
         
         # Print OPfamility
         serialized_string += '<dxl:Opfamilies>'
-        serialized_string += '<dxl:Opfamily Mdid=\"1.1.1.1\"/>'
         serialized_string += '</dxl:Opfamilies>'
         
         # Print ending
