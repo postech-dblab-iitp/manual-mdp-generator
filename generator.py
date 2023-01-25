@@ -46,32 +46,32 @@ class Type:
 
     def setChildMdids(self, mdid):
         sub_mdid = 0
-        self.equalityOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.equalityOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.inequalityOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.inequalityOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.lessThanOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.lessThanOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.lessThanEqualsOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.lessThanEqualsOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.greaterThanOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.greaterThanOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.greaterThanEqualsOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.greaterThanEqualsOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.comparisonOp = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.comparisonOp = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.arrayType = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.arrayType = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
         
-        self.minAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.minAgg = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.maxAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.maxAgg = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.avgAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.avgAgg = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.sumAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.sumAgg = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.countAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
+        self.countAgg = getMdidString(0, str(mdid) + '11' + str(sub_mdid))
 
     def serialize(self) -> str:
         # Print attributes
@@ -150,7 +150,7 @@ class GPDBScalaOp:
         # Print childs
         serialized_string += ('<dxl:LeftType Mdid=\"' + self.leftType + '\"/>')
         serialized_string += ('<dxl:RightType Mdid=\"' + self.rightType + '\"/>')
-        serialized_string += ('<dxl:ResultType Mdid=\"' + self.resultType + '\"/>')
+        #serialized_string += ('<dxl:ResultType Mdid=\"' + self.resultType + '\"/>')
         serialized_string += ('<dxl:OpFunc Mdid=\"' + self.opFunc + '\"/>')
         serialized_string += ('<dxl:Commutator Mdid=\"' + self.commutator + '\"/>')
         serialized_string += ('<dxl:InverseOp Mdid=\"' + self.inverseOp + '\"/>')
