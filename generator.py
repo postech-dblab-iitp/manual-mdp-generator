@@ -213,7 +213,7 @@ class Relation:
             
             # Get attributes
             name = column_json['Name']
-            mdid = self.mdid.split('.')[1]
+            mdid = self.mdid.split('.')[1] + '0' + str(column_counter)
             attno = column_counter
             nullable = column_json['Nullable']
             
@@ -238,7 +238,7 @@ class Relation:
             column = Column()
             
             # Get attributes
-            mdid = self.mdid.split('.')[1]
+            mdid = self.mdid.split('.')[1] + '0' + str(column_counter)
             nullable = False
             
             # Set attributes
