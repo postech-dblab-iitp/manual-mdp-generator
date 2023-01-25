@@ -1,0 +1,17 @@
+{
+    "Types": [
+      {
+        "Name": "int4",
+        "IsRedistributable": true,
+        "IsFixedLength": true,
+        "IsHashable": true
+      }
+    ],
+    "Relations": [
+    ],
+    "Relation_statistics": [
+    ],
+    "Indicies": [
+    ]
+  }
+  

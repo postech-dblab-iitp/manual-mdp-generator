@@ -63,15 +63,15 @@ class Type:
         self.arrayType = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
         
-        self.minAgg = '0.0.0.0'
+        self.minAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.maxAgg = '0.0.0.0'
+        self.maxAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.avgAgg = '0.0.0.0'
+        self.avgAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.sumAgg = '0.0.0.0'
+        self.sumAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
         sub_mdid = sub_mdid + 1
-        self.countAgg = '0.0.0.0'
+        self.countAgg = getMdidString(0, str(mdid) + '00' + str(sub_mdid))
 
     def serialize(self) -> str:
         # Print attributes
