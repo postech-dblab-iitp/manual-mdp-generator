@@ -143,8 +143,8 @@ class GPDBScalaOp:
         serialized_string += ('Mdid=\"' + self.mdid + '\" ')
         serialized_string += ('Name=\"' + self.name + '\" ')
         serialized_string += ('ComparisonType=\"' + self.comparisionType + '\" ')
-        serialized_string += ('ReturnsNullOnNullInput=\"' + self.returnsNullOnNullInput + '\" ')
-        serialized_string += ('IsNDVPreserving=\"' + self.isNDVPreserving + '\" ')
+        serialized_string += ('ReturnsNullOnNullInput=\"' + str(self.returnsNullOnNullInput) + '\" ')
+        serialized_string += ('IsNDVPreserving=\"' + str(self.isNDVPreserving) + '\" ')
         serialized_string += '>'
         
         # Print childs
