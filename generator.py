@@ -17,6 +17,7 @@ class Type:
         self.passByValue = False
         self.isHashable = False
         self.isMergeJoinable = True
+        self.isFixedLength = True
         
         self.equalityOp = ''
         self.inequalityOp = ''
@@ -79,6 +80,7 @@ class Type:
         serialized_string += ('IsHashable=\"' + str(self.isHashable) + '\" ')
         serialized_string += ('PassByValue=\"' + str(self.passByValue) + '\" ')
         serialized_string += ('IsMergeJoinable=\"' + str(self.isMergeJoinable) + '\" ')
+        serialized_string += ('IsFixedLength=\"' + str(self.isFixedLength) + '\" ')
         serialized_string += '>'
         
         # Print childs
