@@ -154,7 +154,6 @@ class GPDBScalaOp:
         serialized_string += ('<dxl:OpFunc Mdid=\"' + self.opFunc + '\"/>')
         serialized_string += ('<dxl:Commutator Mdid=\"' + self.commutator + '\"/>')
         serialized_string += ('<dxl:InverseOp Mdid=\"' + self.inverseOp + '\"/>')
-        serialized_string += ('<dxl:Opfamilies/>')
         
         # Print ending
         serialized_string += '</dxl:GPDBScalarOp>'
@@ -341,9 +340,6 @@ class Index:
         serialized_string += ('KeyColumns=\"' + ','.join(self.keyColumns) + '\" ')
         serialized_string += ('IncludedColumns=\"' + ','.join(self.includedColumns) + '\" ')
         serialized_string += '>'
-        
-        # Print childs
-        serialized_string += ('<dxl:Opfamiles/>')
         
         # Print ending
         serialized_string += '</dxl:Index>'
