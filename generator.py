@@ -18,6 +18,8 @@ class Type:
         self.isHashable = False
         self.isMergeJoinable = True
         self.isFixedLength = True
+        self.isTextRelated = False
+        self.length = '1'
         
         self.equalityOp = ''
         self.inequalityOp = ''
@@ -81,6 +83,8 @@ class Type:
         serialized_string += ('PassByValue=\"' + str(self.passByValue) + '\" ')
         serialized_string += ('IsMergeJoinable=\"' + str(self.isMergeJoinable) + '\" ')
         serialized_string += ('IsFixedLength=\"' + str(self.isFixedLength) + '\" ')
+        serialized_string += ('Length=\"' + str(self.length) + '\" ')
+        serialized_string += ('IsTextRelated=\"' + str(self.isTextRelated) + '\" ')
         serialized_string += '>'
         
         # Print childs
