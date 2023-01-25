@@ -271,7 +271,7 @@ class Relation:
         else:
             serialized_string += '<dxl:IndexInfoList>'
             for indexInfo in self.indexInfoList:
-                serialized_string += ('<dxl:IndexInfo Mdid=\"' + indexInfo.mdid + '\" />')
+                serialized_string += ('<dxl:IndexInfo Mdid=\"' + indexInfo.mdid + '\"' + ' IsPartial=\"false\"' + '/>')
             serialized_string += '</dxl:IndexInfoList>'
         serialized_string += ('<dxl:Triggers/>')
         serialized_string += ('<dxl:CheckConstraints/>')
