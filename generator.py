@@ -582,3 +582,12 @@ pretty_mdp_as_string = dom.toprettyxml()
 
 with open('pretty_mdp.mdp', 'w') as pretty_mdp:
     pretty_mdp.write(pretty_mdp_as_string)
+    
+    
+# Dump relation mdids
+relation_mdid_dict = {}
+for relation in relation_list:
+    relation_mdid_dict[relation.name] = relation.mdid
+
+with open('relation_mdid.txt', 'w') as relation_mdid_file:
+    relation_mdid_file.write(json.dumps(relation_mdid_dict))

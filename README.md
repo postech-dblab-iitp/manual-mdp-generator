@@ -10,4 +10,5 @@
 ```
 raw_mdp.mdp: raw mdp file
 pretty_mdp.mdp: pretty print mdp file
+relation_mdid.txt: relation mdid mapping
 ```
