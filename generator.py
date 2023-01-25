@@ -341,6 +341,11 @@ class Index:
         serialized_string += ('IncludedColumns=\"' + ','.join(self.includedColumns) + '\" ')
         serialized_string += '>'
         
+        # Print OPfamility
+        serialized_string += '<dxl:Opfamilies>'
+        serialized_string += '<dxl:Opfamily Mdid=\"1.1.1.1\"/>'
+        serialized_string += '</dxl:Opfamilies>'
+        
         # Print ending
         serialized_string += '</dxl:Index>'
         
@@ -557,7 +562,7 @@ with open(json_file_path, 'r') as json_file:
         mdid_clock = mdid_clock + 1
         
         # Set attributes
-        new_relation_statistics.setAttributes(name, str(mdid), rows)
+        new_relation_statistics.setAttributes(relation_name, str(mdid), rows)
         
         # Append
         relation_statistics_list.append(new_relation_statistics)
