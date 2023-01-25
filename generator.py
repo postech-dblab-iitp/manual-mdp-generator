@@ -101,7 +101,6 @@ class Type:
         serialized_string += ('<dxl:AvgAgg Mdid=\"' + self.avgAgg + '\"/>')
         serialized_string += ('<dxl:SumAgg Mdid=\"' + self.sumAgg + '\"/>')
         serialized_string += ('<dxl:CountAgg Mdid=\"' + self.countAgg + '\"/>')
-        serialized_string += ('<dxl:Opfamiles/>')
         
         # Print ending
         serialized_string += '</dxl:Type>'
