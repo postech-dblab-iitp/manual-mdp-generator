@@ -249,6 +249,7 @@ class Relation:
         # Set max column
         self.maxColumns = column_counter - 1
         
+        """
         # Create default columns
         additional_column_names = ['ctid', 'tableoid', 'gp_segment_id'] 
         additional_column_attnos = [-1, -7, -8]
@@ -269,6 +270,7 @@ class Relation:
             
             # Append
             self.columns.append(column)
+        """
             
     def serialize(self) -> str:
         # Print attributes
