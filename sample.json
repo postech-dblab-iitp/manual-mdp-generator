@@ -39,7 +39,7 @@
           },
           {
             "Name": "name",
-            "Column_type": "char",
+            "Column_type": "int4",
             "Nullable": false
           }
         ]

@@ -122,6 +122,8 @@ class GPDBScalaOp:
         self.opFunc = ''
         self.commutator = ''
         self.inverseOp = ''
+        
+        self.opfamily = ''
     
     def setAttributes(self, name, mdid, comparisionType, leftType, rightType, resultType, commutator, inverseOp):
         self.name = name
@@ -133,6 +135,7 @@ class GPDBScalaOp:
         self.opFunc = mdid.split('.')[0] + '.' + mdid.split('.')[1] + '0' + '.1.0'
         self.commutator = commutator
         self.inverseOp = inverseOp
+        self.opfamily = '0.1111.1.0'
     
     def getOid():
         return str(0)
@@ -154,6 +157,12 @@ class GPDBScalaOp:
         serialized_string += ('<dxl:OpFunc Mdid=\"' + self.opFunc + '\"/>')
         serialized_string += ('<dxl:Commutator Mdid=\"' + self.commutator + '\"/>')
         serialized_string += ('<dxl:InverseOp Mdid=\"' + self.inverseOp + '\"/>')
+        
+        # Print opfamily
+        serialized_string += ('<dxl:Opfamilies>')
+        serialized_string += ('<dxl:Opfamily Mdid=\"' + self.opfamily + '\"/>')
+        serialized_string += ('</dxl:Opfamilies>')
+        
         
         # Print ending
         serialized_string += '</dxl:GPDBScalarOp>'
@@ -205,7 +214,7 @@ class Relation:
         self.mdid = getMdidString(6, mdid)
         self.isTemporary = isTemporary
     
-    def setColumns(self, columns_json):
+    def setColumns(self, columns_json, type_list):
         column_counter = 1
         for column_json in columns_json:
             # Create column instance
@@ -213,9 +222,20 @@ class Relation:
             
             # Get attributes
             name = column_json['Name']
-            mdid = self.mdid.split('.')[1] + '0' + str(column_counter)
+            column_type = column_json['Column_type']
             attno = column_counter
             nullable = column_json['Nullable']
+            mdid = ''
+            
+            # Get column_type's mdid
+            for type_instance in type_list:
+                if type_instance.name == column_type:
+                    mdid = type_instance.mdid
+            
+            # If type not defined, return error
+            if mdid == '':
+                print('No type ' + column_type)
+                sys.exit(1)
             
             # Set attributes
             column.setAttributes(name, mdid, attno, nullable)
@@ -226,7 +246,7 @@ class Relation:
             # Append
             self.columns.append(column)
         
-        # Set max column count
+        # Set max column
         self.maxColumns = column_counter - 1
         
         # Create default columns
@@ -238,7 +258,7 @@ class Relation:
             column = Column()
             
             # Get attributes
-            mdid = self.mdid.split('.')[1] + '0' + str(column_counter)
+            mdid = '0.' + self.mdid.split('.')[1] + '0' + str(column_counter) + '.1.0'
             nullable = False
             
             # Set attributes
@@ -289,7 +309,7 @@ class Column:
     
     def setAttributes(self, name, mdid, attno, nullable):
         self.name = name
-        self.mdid = getMdidString(0, mdid)
+        self.mdid = mdid
         self.attno = attno
         self.nullable = nullable
     
@@ -326,6 +346,7 @@ class Index:
         self.isClustered = isClustered
         self.keyColumns = keyColumns
         self.includedColumns = includedColumns
+        self.opfamily = '0.1111.1.0'
 
     def getOid():
         return str(7)    
@@ -343,6 +364,7 @@ class Index:
         
         # Print OPfamility
         serialized_string += '<dxl:Opfamilies>'
+        serialized_string += ('<dxl:Opfamily Mdid=\"' + self.opfamily + '\"/>')
         serialized_string += '</dxl:Opfamilies>'
         
         # Print ending
@@ -488,7 +510,7 @@ with open(json_file_path, 'r') as json_file:
         new_relation.setAttributes(name, str(mdid), isTemporary)
         
         # Set columns
-        new_relation.setColumns(relation_json['Columns'])
+        new_relation.setColumns(relation_json['Columns'], type_list)
         
         # Append relation
         relation_list.append(new_relation)

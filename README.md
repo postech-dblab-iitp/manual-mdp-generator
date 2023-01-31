@@ -3,7 +3,7 @@
 ## Usage
 
 ```
-./generator.py <configuration file>
+python3 generator.py <configuration file>
 ```
 
 ## Output
